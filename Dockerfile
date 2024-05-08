@@ -9,9 +9,9 @@ COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
 COPY style.css /usr/share/nginx/html/
 ADD https://releases.hashicorp.com/terraform/1.8.3/terraform_1.8.3_linux_amd64.zip .
-ADD https://releases.hashicorp.com/packer/1.10.3/packer_1.10.3_linux_amd64.zip .
+ADD https://releases.hashicorp.com/packer/1.6.2/packer_1.6.2_linux_amd64.zip .
 RUN unzip terraform_1.8.3_linux_amd64.zip
-RUN unzip packer_1.10.3_linux_amd64.zip
+RUN unzip packer_1.6.2_linux_amd64.zip
 RUN terraform /usr/local/bin
 RUN packer /usr/local/bin
 RUN rm -rf *.zip
