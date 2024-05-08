@@ -14,8 +14,8 @@ ADD https://releases.hashicorp.com/terraform/1.8.3/terraform_1.8.3_linux_amd64.z
 ADD https://releases.hashicorp.com/packer/1.6.2/packer_1.6.2_linux_amd64.zip .
 RUN unzip terraform_1.8.3_linux_amd64.zip
 RUN unzip packer_1.6.2_linux_amd64.zip
-RUN terraform /usr/local/bin
-RUN packer /usr/local/bin
+RUN mv terraform /usr/local/bin
+RUN mv packer /usr/local/bin
 RUN rm -rf *.zip
 RUN terraform version
 RUN packer version
