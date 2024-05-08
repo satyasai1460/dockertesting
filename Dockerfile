@@ -4,6 +4,8 @@ RUN apt update
 RUN apt install -y unzip
 RUN apt install -y net-tools
 RUN apt install -y jq 
+RUN rm -rf terraform*
+RUN rm -rf packer*
 COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
