@@ -1,7 +1,7 @@
 FROM nginx:latest 
-LABEL "author"="msatyasai1460@gmail.com" "Deplaoyed on"="May-8"
+LABEL "author"="satyasai1460@gmail.com" "Deplaoyed on"="May-8"
 RUN apt update && apt install -y unzip \
-    apt install -y net-tools && apt install -y jq \
+    && apt install -y net-tools && apt install -y jq \
     && rm -rf terraform* \
     && rm -rf packer*
 COPY index.html /usr/share/nginx/html/
