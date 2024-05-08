@@ -1,7 +1,9 @@
 FROM nginx:latest 
 LABEL "author"="msatyasai1460@gmail.com" "Deplaoyed on"="May-8"
 RUN apt update
-RUN apt install -y unzip net-tools jq 
+RUN apt install -y unzip
+RUN apt install -y net-tools
+RUN apt install y jq 
 COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
