@@ -4,12 +4,14 @@ RUN apt update && apt install -y unzip \
     && apt install -y net-tools && apt install -y jq \
     && rm -rf terraform* \
     && rm -rf packer*
+ARG TFORM='1.6.2'
+ARG PACK='1.5.2'
 COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
 COPY style.css /usr/share/nginx/html/
-ADD https://releases.hashicorp.com/terraform/1.8.3/terraform_1.8.3_linux_amd64.zip .
-ADD https://releases.hashicorp.com/packer/1.6.2/packer_1.6.2_linux_amd64.zip .
-RUN unzip terraform_1.8.3_linux_amd64.zip && unzip packer_1.6.2_linux_amd64.zip \
+ADD https://releases.hashicorp.com/terraform/${TFORM}/terraform_${TFORM}_linux_amd64.zip .
+ADD https://releases.hashicorp.com/packer/${PACK}/packer_${PACK}_linux_amd64.zip .
+RUN unzip terraform_${TFORM}_linux_amd64.zip && unzip packer_${PACK}_linux_amd64.zip \
     && mv terraform /usr/local/bin && mv packer /usr/local/bin \
     && rm -rf *.zip && terraform version && packer version
