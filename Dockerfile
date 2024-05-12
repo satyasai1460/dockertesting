@@ -3,7 +3,8 @@ LABEL "author"="satyasai1460@gmail.com" "Deplaoyed on"="May-8"
 RUN apt update && apt install -y unzip \
     && apt install -y net-tools && apt install -y jq && apt install -y iputils-ping\
     && rm -rf terraform* \
-    && rm -rf packer*
+    && rm -rf packer* \
+    && useradd testuser1
 ARG TFORM='1.6.2'
 ARG PACK='1.5.2'
 COPY index.html /usr/share/nginx/html/
@@ -18,3 +19,4 @@ RUN unzip terraform_${TFORM}_linux_amd64.zip && unzip packer_${PACK}_linux_amd64
 EXPOSE 80
 # CMD ["ping", "-c 3", "www.google.com"]
 ENTRYPOINT ["ping", "-c 3", "www.google.com"]
+USER  testuser1
