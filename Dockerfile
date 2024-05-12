@@ -17,6 +17,6 @@ RUN unzip terraform_${TFORM}_linux_amd64.zip && unzip packer_${PACK}_linux_amd64
     && mv terraform /usr/local/bin && mv packer /usr/local/bin \
     && rm -rf *.zip && terraform version && packer version
 EXPOSE 80
-# CMD ["ping", "-c 3", "www.google.com"]
-ENTRYPOINT ["ping", "-c 3", "www.google.com"]
+CMD ["ping", "-c 3", "www.google.com"]
+# ENTRYPOINT ["ping", "-c 3", "www.google.com"]
 USER  testuser1
