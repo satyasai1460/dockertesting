@@ -8,7 +8,7 @@ ENV AWS_DEFAULT_REGION="us-east-1"
 RUN apt update 
 RUN apt install -y unzip net-tools \
     && apt install -y curl nano \
-    && apt install -y unzip jq \
+    && apt install -y unzip jq iputils-ping \
     && mkdir -p /tmp/terraform /tmp/packer
 COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
@@ -23,4 +23,4 @@ RUN unzip /tmp/terraform/terraform_${TFORM}_linux_amd64.zip -d /tmp/terraform \
     && rm -rf /tmp/terraform/*.zip \
     && rm -rf /tmp/packer/*.zip && terraform version && packer version
 EXPOSE 80 8080 8000
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["ping", "-c 3", "www.google.com"]
