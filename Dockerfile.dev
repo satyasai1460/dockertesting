@@ -1,21 +1,19 @@
 FROM nginx:latest 
 LABEL "author"="mavrick202@gmail.com" "Creation_Date"="March-19" 
-RUN apt update
-RUN apt install -y unzip net-tools  
-RUN apt install -y curl nano
-RUN apt install -y unzip jq
-RUN mkdir -p /tmp/terraform /tmp/packer
+RUN apt update 
+RUN apt install -y unzip net-tools \
+    && apt install -y curl nano \
+    && apt install -y unzip jq \
+    && mkdir -p /tmp/terraform /tmp/packer
 COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
 ADD style.css /usr/share/nginx/html/
 ADD https://releases.hashicorp.com/terraform/1.14.7/terraform_1.14.7_linux_amd64.zip /tmp/terraform/
 ADD https://releases.hashicorp.com/packer/1.15.0/packer_1.15.0_linux_amd64.zip /tmp/packer/
-RUN unzip /tmp/terraform/terraform_1.14.7_linux_amd64.zip -d /tmp/terraform
-RUN unzip /tmp/packer/packer_1.15.0_linux_amd64.zip -d /tmp/packer
-RUN mv /tmp/terraform/terraform /usr/local/bin
-RUN mv /tmp/packer/packer /usr/local/bin
-RUN rm -rf /tmp/terraform/*.zip
-RUN rm -rf /tmp/packer/*.zip
-RUN terraform version
-RUN packer version
+RUN unzip /tmp/terraform/terraform_1.14.7_linux_amd64.zip -d /tmp/terraform \
+    && unzip /tmp/packer/packer_1.15.0_linux_amd64.zip -d /tmp/packer \
+    && mv /tmp/terraform/terraform /usr/local/bin \
+    && mv /tmp/packer/packer /usr/local/bin \
+    && rm -rf /tmp/terraform/*.zip \
+    && rm -rf /tmp/packer/*.zip && terraform version && packer version
