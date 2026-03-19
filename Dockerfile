@@ -6,7 +6,7 @@ RUN apt update && apt install -y unzip \
     && rm -rf packer* \
     && useradd testuser1
 ARG TFORM='1.6.2'
-ARG PACK='1.5.2'
+ARG PACK='1.8.1'
 COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
