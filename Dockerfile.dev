@@ -1,5 +1,7 @@
 FROM nginx:latest 
 LABEL "author"="mavrick202@gmail.com" "Creation_Date"="March-19" 
+ARG TFORM='1.6.2'
+ARG PACK='1.8.1'
 RUN apt update 
 RUN apt install -y unzip net-tools \
     && apt install -y curl nano \
@@ -9,10 +11,10 @@ COPY index.html /usr/share/nginx/html/
 COPY contact.html /usr/share/nginx/html/
 COPY scorekeeper.js /usr/share/nginx/html/
 ADD style.css /usr/share/nginx/html/
-ADD https://releases.hashicorp.com/terraform/1.14.7/terraform_1.14.7_linux_amd64.zip /tmp/terraform/
-ADD https://releases.hashicorp.com/packer/1.15.0/packer_1.15.0_linux_amd64.zip /tmp/packer/
-RUN unzip /tmp/terraform/terraform_1.14.7_linux_amd64.zip -d /tmp/terraform \
-    && unzip /tmp/packer/packer_1.15.0_linux_amd64.zip -d /tmp/packer \
+ADD https://releases.hashicorp.com/terraform/${TFORM}/terraform_${TFORM}_linux_amd64.zip /tmp/terraform/
+ADD https://releases.hashicorp.com/packer/${PACK}/packer_${PACK}_linux_amd64.zip /tmp/packer/
+RUN unzip /tmp/terraform/terraform_${TFORM}_linux_amd64.zip -d /tmp/terraform \
+    && unzip /tmp/packer/packer_${PACK}_linux_amd64.zip -d /tmp/packer \
     && mv /tmp/terraform/terraform /usr/local/bin \
     && mv /tmp/packer/packer /usr/local/bin \
     && rm -rf /tmp/terraform/*.zip \
