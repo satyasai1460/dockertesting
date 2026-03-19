@@ -1,5 +1,5 @@
 FROM nginx:latest 
-LABEL "author"="mavrick202@gmail.com" "Creation_Date"="March-19" 
+LABEL "author"="satyasai1460@gmail.com" "Creation_Date"="March-19" 
 ARG TFORM='1.6.2'
 ARG PACK='1.8.1'
 ENV AWS_ACCESS_KEY_ID="AKIAIOSFODNN7EXAMPLE"
@@ -22,4 +22,5 @@ RUN unzip /tmp/terraform/terraform_${TFORM}_linux_amd64.zip -d /tmp/terraform \
     && mv /tmp/packer/packer /usr/local/bin \
     && rm -rf /tmp/terraform/*.zip \
     && rm -rf /tmp/packer/*.zip && terraform version && packer version
-EXPOSE 80
+EXPOSE 80 8080 8000
+CMD ["nginx", "-g", "daemon off;"]
